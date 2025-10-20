@@ -38,3 +38,25 @@ function extractNumber(input) {
   }
   return Number(digits);
 }
+
+window.isWithinLength = isWithinLength;
+window.isPalindrome = isPalindrome;
+window.extractNumber = extractNumber;
+
+function toMinutes(timeStr) {
+  const parts = String(timeStr).trim().split(':');
+  const h = parseInt(parts[0], 10);
+  const m = parseInt(parts[1], 10);
+  return h * 60 + m;
+}
+
+function isMeetingFits(workStart, workEnd, meetStart, duration) {
+  const ws = toMinutes(workStart);
+  const we = toMinutes(workEnd);
+  const ms = toMinutes(meetStart);
+  const me = ms + Number(duration);
+
+  return ms >= ws && me <= we;
+}
+
+window.isMeetingFits = isMeetingFits;
