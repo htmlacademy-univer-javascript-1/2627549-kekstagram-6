@@ -4,7 +4,7 @@ export function renderPhotos(photos) {
   const picturesContainer = document.querySelector('.pictures');
   const fragment = document.createDocumentFragment();
 
-  photos.forEach(photo => {
+  photos.forEach((photo) => {
     const pictureElement = document.getElementById('picture').content.cloneNode(true);
 
     const imgElement = pictureElement.querySelector('img');
