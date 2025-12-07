@@ -55,7 +55,10 @@ function isMeetingFits(workStart, workEnd, meetStart, duration) {
   const we = toMinutes(workEnd);
   const ms = toMinutes(meetStart);
   const me = ms + Number(duration);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9036190d153d1906f4abb54e15a6bda31c467881
   return ms >= ws && me <= we;
 }
 
