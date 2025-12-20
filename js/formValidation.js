@@ -33,6 +33,4 @@ pristine.addValidator(
   'Комментарий не может быть длиннее 140 символов.'
 );
 
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-});
+export { pristine };
