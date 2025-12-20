@@ -12,6 +12,26 @@ const descriptionInput = document.querySelector('.text__description');
 const uploadSubmit = document.querySelector('#upload-submit');
 const successTemplate = document.querySelector('#success');
 const errorTemplate = document.querySelector('#error');
+const imgPreview = document.querySelector('.img-upload__preview img');
+
+const FILE_TYPES = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+function loadImage(file) {
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((type) => fileName.endsWith(type));
+
+  if (!matches) {
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.addEventListener('load', () => {
+    imgPreview.src = reader.result;
+  });
+
+  reader.readAsDataURL(file);
+}
 
 function openUploadForm() {
   uploadOverlay.classList.remove('hidden');
@@ -23,6 +43,7 @@ function closeUploadForm() {
   document.body.classList.remove('modal-open');
   uploadForm.reset();
   uploadInput.value = '';
+  imgPreview.src = 'img/upload-default-image.jpg';
   resetScale();
   resetEffects();
   pristine.reset();
@@ -80,7 +101,11 @@ async function handleFormSubmit(evt) {
 
 export function initUploadForm() {
   uploadInput.addEventListener('change', () => {
-    openUploadForm();
+    const file = uploadInput.files[0];
+    if (file) {
+      loadImage(file);
+      openUploadForm();
+    }
   });
 
   uploadCancel.addEventListener('click', () => {
