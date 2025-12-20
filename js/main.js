@@ -2,6 +2,7 @@ import { getPhotos } from './api.js';
 import { renderPhotos } from './renderPhotos.js';
 import { initBigPictureHandlers } from './bigPicture.js';
 import { initUploadForm } from './formUpload.js';
+import { initFilters } from './filters.js';
 import 'nouislider/dist/nouislider.css';
 import './imageScale.js';
 import './imageEffects.js';
@@ -11,6 +12,7 @@ async function loadPhotos() {
     const photosData = await getPhotos();
     renderPhotos(photosData);
     initBigPictureHandlers();
+    initFilters(photosData);
   } catch (error) {
     const picturesContainer = document.querySelector('.pictures');
     const errorMessage = document.createElement('div');
