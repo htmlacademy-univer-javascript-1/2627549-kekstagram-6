@@ -24,38 +24,6 @@ const validateHashtagsFormat = (value) => {
   return !hashtags.some((hashtag) => !VALID_HASHTAG_REGEX.test(hashtag));
 };
 
-const validateHashtagsSpecialChars = (value) => {
-  if (!value) {
-    return true;
-  }
-  const hashtags = value.trim().split(/\s+/).filter((item) => item.length > 0);
-  for (const hashtag of hashtags) {
-    if (hashtag.length > 1) {
-      const tagWithoutHash = hashtag.substring(1);
-      if (/[#@$%&*!~`^|\\/<>{}[\]()=+?:;"']/.test(tagWithoutHash)) {
-        return false;
-      }
-    }
-  }
-  return true;
-};
-
-const validateHashtagsPunctuation = (value) => {
-  if (!value) {
-    return true;
-  }
-  const hashtags = value.trim().split(/\s+/).filter((item) => item.length > 0);
-  for (const hashtag of hashtags) {
-    if (hashtag.length > 1) {
-      const tagWithoutHash = hashtag.substring(1);
-      if (/[–—,\-.]/.test(tagWithoutHash)) {
-        return false;
-      }
-    }
-  }
-  return true;
-};
-
 const validateNonEmptyHashtag = (value) => {
   if (!value) {
     return true;
